@@ -76,9 +76,30 @@ void dbg(const char *s, T v, A... a)
 #define debug(...) 42
 #endif
 
+array<array<signed, 100005>, 1005> dp;
+
 void solve()
 {
-    //
+    int n, x;
+    cin >> n >> x;
+
+    vector<signed> price(n);
+    vector<signed> page(n);
+    for (auto &elem : price)
+        cin >> elem;
+    for (auto &elem : page)
+        cin >> elem;
+
+    dp[0].fill(0);
+
+    for (int i = 1; i <= n; ++i)
+        for (int p = 0; p <= x; ++p)
+            if (price[i - 1] <= p)
+                dp[i][p] = max(dp[i - 1][p], dp[i - 1][p - price[i - 1]] + page[i - 1]);
+            else
+                dp[i][p] = dp[i - 1][p];
+
+    cout << dp[n][x];
 }
 
 signed main()
