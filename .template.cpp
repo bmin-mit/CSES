@@ -13,10 +13,7 @@ using namespace std;
     while (t--)
 
 template <class T, class V>
-ostream &operator<<(ostream &o, pair<T, V> p)
-{
-    return o << "(" << p.first << ", " << p.second << ")";
-}
+ostream &operator<<(ostream &o, pair<T, V> p);
 
 #define P(T, O, C)                          \
     template <class U>                      \
@@ -43,6 +40,12 @@ ostream &operator<<(ostream &o, pair<T, V> p)
 P(vector, '[', ']')
 P(set, '{', '}')
 Q(map, '{', '}')
+
+template <class T, class V>
+ostream &operator<<(ostream &o, pair<T, V> p)
+{
+    return o << "(" << p.first << ", " << p.second << ")";
+}
 
 template <class T, size_t N>
 ostream &operator<<(ostream &o, array<T, N> v)
